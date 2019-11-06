@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Employees App</string>
+    <string name="loading">Загрузка…</string>
+    <string name="no_internet">Отсутствует соединение с Интернетом</string>
+    <string name="ok">OK</string>
+    <string name="tagLoadingDialog">LoadingDialog</string>
+    <string name="error_connection">Не удалось загрузить данные с сервера.</string>
+    <string name="spec">Выбор специализации:</string>
+    <string name="spec_fragment">SpecFragment</string>
+    <string name="employee_fragment">EmployeeFragment</string>
+    <string name="current_employee_fragment">CurrentEmployeeFragment</string>
+    <string name="empty_age">Возраст: «\u00AD«</string>
+    <string name="age_with_colon">Возраст:</string>
+    <string name="dbirthday_with_colomn">Дата рождения:</string>
+    <string name="dbirthday_empty">Дата рождения: «\u00AD«</string>
+    <string name="dash">«\u00AD«</string>
+    <string name="speciality_with_colon">Специальность:</string>
+</resources>
