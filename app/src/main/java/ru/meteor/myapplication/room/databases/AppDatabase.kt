@@ -18,12 +18,12 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun specialityDao(): SpecialityDao
 
     companion object {
-        private var Instance: AppDatabase? = null
+        private var instance: AppDatabase? = null
 
         fun getDatabase(context: Context): AppDatabase? {
-            if (Instance == null) {
+            if (instance == null) {
                 synchronized(AppDatabase::class) {
-                    Instance = Room.databaseBuilder(
+                    instance = Room.databaseBuilder(
                         context.applicationContext,
                         AppDatabase::class.java,
                         "employee.db"
@@ -32,7 +32,7 @@ abstract class AppDatabase : RoomDatabase() {
                         .build()
                 }
             }
-            return Instance
+            return instance
         }
     }
 

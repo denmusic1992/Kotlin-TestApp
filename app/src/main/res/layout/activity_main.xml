@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
-    <include layout="@layout/app_bar_layout_with_title"
+    <include layout="@layout/appbar_layout_with_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

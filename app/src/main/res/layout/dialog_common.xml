@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/rounded_corners_dialog"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="@dimen/layout_padding">
 
     <TextView
         android:id="@+id/textNoConnection"
@@ -19,8 +19,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:minWidth="100dp"
+        android:layout_marginTop="@dimen/layout_padding"
+        android:minWidth="@dimen/button_min_width"
         android:text="@string/ok" />
 
 </LinearLayout>

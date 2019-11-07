@@ -10,39 +10,43 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:foreground="?android:attr/selectableItemBackground"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="5dp"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/card_elevation"
         app:cardUseCompatPadding="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="@dimen/layout_padding">
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/employeeImageView"
-                android:layout_width="50dp"
+                android:layout_width="@dimen/circle_image_small"
+                android:layout_height="@dimen/circle_image_small"
                 android:layout_gravity="center"
-                android:layout_height="50dp"
-                android:layout_margin="10dp"/>
+                android:layout_margin="@dimen/common_margins" />
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_margin="5dp"
-                android:gravity="center_horizontal"
-                android:layout_height="wrap_content"
-                android:id="@+id/nameEmployeeTextView"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_margin="5dp"
-                android:gravity="center_horizontal"
-                android:layout_height="wrap_content"
-                android:id="@+id/surnameEmployeeTextView"/>
-            <TextView
+                android:id="@+id/nameEmployeeTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:layout_margin="5dp"
-                android:id="@+id/specialityTextView"/>
+                android:layout_margin="@dimen/common_margins"
+                android:gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/surnameEmployeeTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margins"
+                android:gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/specialityTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/common_margins"
+                android:gravity="center_horizontal" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

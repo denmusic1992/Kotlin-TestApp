@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.dialog_fragment.view.*
+import kotlinx.android.synthetic.main.dialog_common.view.*
 import ru.meteor.myapplication.R
 import ru.meteor.myapplication.interfaces.ItemClickInterface
 
@@ -18,7 +18,7 @@ class ErrorDialog(private val error: String): CommonDialog(), View.OnClickListen
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        val view: View = inflater.inflate(R.layout.dialog_fragment, container, false)
+        val view: View = inflater.inflate(R.layout.dialog_common, container, false)
         initDialogContent(view)
         return view
     }

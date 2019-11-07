@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_spec.*
+import kotlinx.android.synthetic.main.fragment_spec.*
 import ru.meteor.myapplication.R
 import ru.meteor.myapplication.adapters.SpecsAdapter
 import ru.meteor.myapplication.models.Speciality
@@ -22,7 +22,7 @@ class SpecsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.activity_spec, container, false)
+        return inflater.inflate(R.layout.fragment_spec, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,7 +30,13 @@ class SpecsFragment : Fragment() {
 
         val listener: SpecsAdapter.SpecClickInterface = object : SpecsAdapter.SpecClickInterface{
             override fun onClick(spec: Speciality) {
-                fragmentManager?.beginTransaction()?.replace(R.id.mainFragment, EmployeesFragment(spec))
+                // Кладем во фрагмент нашу спецку
+                val employeeFragment = EmployeesFragment()
+                val bundle = Bundle()
+                bundle.putParcelable(EmployeesFragment.specKey, spec)
+                employeeFragment.arguments = bundle
+
+                fragmentManager?.beginTransaction()?.replace(R.id.mainFragment, employeeFragment)
                     ?.addToBackStack(getString(R.string.employee_fragment))
                     ?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)?.commit()
             }

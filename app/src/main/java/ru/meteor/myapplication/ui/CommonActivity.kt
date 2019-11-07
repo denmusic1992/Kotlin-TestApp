@@ -5,7 +5,7 @@ import android.net.ConnectivityManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import kotlinx.android.synthetic.main.app_bar_layout_with_title.*
+import kotlinx.android.synthetic.main.appbar_layout_with_title.*
 import ru.meteor.myapplication.R
 import ru.meteor.myapplication.interfaces.ItemClickInterface
 import ru.meteor.myapplication.dialogs.ErrorDialog
@@ -47,9 +47,7 @@ abstract class CommonActivity: AppCompatActivity(), ItemClickInterface {
 
     override fun onClick() { finish() }
 
-    override fun onClick(position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun onClick(position: Int) { }
 
     // метод показывающий диалоговое окно
     fun showErrorDialog(error: String) {

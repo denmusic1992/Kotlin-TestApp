@@ -13,6 +13,6 @@ class LoadingDialog: CommonDialog() {
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        return inflater.inflate(R.layout.activity_loading_dialog, container, false)
+        return inflater.inflate(R.layout.dialog_loading, container, false)
     }
 }

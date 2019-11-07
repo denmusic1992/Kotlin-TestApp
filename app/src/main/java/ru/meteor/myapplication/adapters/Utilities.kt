@@ -22,7 +22,7 @@ object Utilities {
         val formatted = SimpleDateFormat("dd-MM-yyyy", Locale.US)
         val formatted2 = SimpleDateFormat("yyyy-MM-dd", Locale.US)
         val datePattern = "\\d{2}-\\d{2}-\\d{4}"
-        val dateFormat: Date
+        val dateFormat: Date?
         val isDate = date.matches(datePattern.toRegex())
         dateFormat = if (isDate) {
             formatted.parse(date)
@@ -30,7 +30,8 @@ object Utilities {
             formatted2.parse(date)
         }
         val c = Calendar.getInstance()
-        c.time = dateFormat
+        if(dateFormat != null)
+            c.time = dateFormat
 
         return c
     }

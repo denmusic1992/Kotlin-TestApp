@@ -1,14 +1,17 @@
 package ru.meteor.myapplication.models
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.TypeConverters
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 import ru.meteor.myapplication.room.converters.SpecConverter
 
 @Entity(primaryKeys = ["f_name", "l_name"])
 @TypeConverters(SpecConverter::class)
+@Parcelize
 data class Employee(
     @SerializedName("f_name")
     @ColumnInfo(name = "f_name")
@@ -34,4 +37,4 @@ data class Employee(
     @ColumnInfo(name = "specialty")
     @Expose
     val specialty: List<Speciality>?
-)
+): Parcelable

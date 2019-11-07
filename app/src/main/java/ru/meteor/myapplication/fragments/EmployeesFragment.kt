@@ -7,35 +7,52 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_spec.*
+import kotlinx.android.synthetic.main.fragment_spec.*
 import ru.meteor.myapplication.R
-import ru.meteor.myapplication.adapters.CurrentEmployeeFragment
 import ru.meteor.myapplication.adapters.EmployeeAdapter
 import ru.meteor.myapplication.models.Employee
 import ru.meteor.myapplication.models.Speciality
 import ru.meteor.myapplication.room.dao.EmployeeDao
 import ru.meteor.myapplication.room.databases.AppDatabase
 
-class EmployeesFragment(private val spec: Speciality) : Fragment() {
+class EmployeesFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.activity_spec, container, false)
+        return inflater.inflate(R.layout.fragment_spec, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val listener: EmployeeAdapter.EmployeeClickInterface = object : EmployeeAdapter.EmployeeClickInterface{
-            override fun onClick(employee: Employee) {
-                fragmentManager?.beginTransaction()?.replace(R.id.mainFragment, CurrentEmployeeFragment(employee))
-                    ?.addToBackStack(getString(R.string.employee_fragment))
-                    ?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)?.commit()
-            }
+        // Получаем записанный в bundle аргумент
+        val bundle: Bundle? = this.arguments
+        var speciality: Speciality? = null
+        if (bundle != null) {
+            speciality = bundle.getParcelable(specKey)
         }
+
+        val listener: EmployeeAdapter.EmployeeClickInterface =
+            object : EmployeeAdapter.EmployeeClickInterface {
+                override fun onClick(employee: Employee) {
+
+                    // Кладем во фрагмент нашу спецку
+                    val currentEmployeeFragment = CurrentEmployeeFragment()
+                    val employeeBundle = Bundle()
+                    employeeBundle.putParcelable(CurrentEmployeeFragment.employeeKey, employee)
+                    currentEmployeeFragment.arguments = employeeBundle
+
+                    fragmentManager?.beginTransaction()?.replace(
+                        R.id.mainFragment,
+                        currentEmployeeFragment
+                    )
+                        ?.addToBackStack(getString(R.string.current_employee_fragment))
+                        ?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)?.commit()
+                }
+            }
 
 
         // описываем функционал recycler view
@@ -46,10 +63,15 @@ class EmployeesFragment(private val spec: Speciality) : Fragment() {
             false
         )
 
-        val employees =
-            loadEmployees(spec.name, AppDatabase.getDatabase(view.context)?.employeeDao())
-        //val employees: EmployeeDao? = AppDatabase.getDatabase(view.context)?.employeeDao()
-        specRecyclerView.adapter = EmployeeAdapter(employees, listener)
+        if (speciality != null) {
+            val employees =
+                loadEmployees(
+                    speciality.name,
+                    AppDatabase.getDatabase(view.context)?.employeeDao()
+                )
+            //val employees: EmployeeDao? = AppDatabase.getDatabase(view.context)?.employeeDao()
+            specRecyclerView.adapter = EmployeeAdapter(employees, listener)
+        }
     }
 
     private fun loadEmployees(name: String?, employeesDao: EmployeeDao?): List<Employee> {
@@ -65,6 +87,10 @@ class EmployeesFragment(private val spec: Speciality) : Fragment() {
                     }
             }
         return employees
+    }
+
+    companion object {
+        const val specKey: String = "spec"
     }
 
 }
